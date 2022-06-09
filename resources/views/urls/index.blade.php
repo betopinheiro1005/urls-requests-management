@@ -13,17 +13,19 @@
             </div>
             </div>
         <div class="col-sm-10 col-md-10">
-            <h3 class="text-center titulo_painel">URL's (Requests)</h3><br>
+            <h3 class="text-center titulo_painel">URL's (Requests)</h3>
         </div>
         <div class="col-sm-1 col-md-1">
             <div class="text-center py-1">
-                <a id="bt_update_requests" class="btn btn-dark bt-sm" href="{{route('update.all')}}" title="Atualizar requisições"><i class="fa-solid fa-arrow-rotate-right"></i></a>
-            </div>  
-            <div>
-                <p id="mensagem" class="text-center"></p>
+                <a class="btn btn-dark bt-sm bt_update_all_requests" href="{{route('update.all')}}" title="Atualizar requisições"><i class="fa-solid fa-arrow-rotate-right"></i></a>
             </div>  
         </div>
     </div>    
+
+    <div>
+        <h4 style="font-weight:bold" class="text-center text-danger msg_user"></h4>
+    </div>  
+
 
         @if(Session::has('message'))
             <div class="alert alert-success alert-dismissible mt-3 text-center" role="alert">
