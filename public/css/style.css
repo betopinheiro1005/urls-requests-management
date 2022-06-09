@@ -1,0 +1,62 @@
+* {
+   margin: 0px;
+}
+p, li {
+    font-size: 18px;
+}
+h4 {
+    margin-bottom: 15px;
+}
+li {
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
+
+#conteudo_exibido{
+    /* border:1px solid #ccc; */
+    background-color: #FFFFFF;
+}
+
+.font_logo {
+    color: #000000;
+    background: #FFFFFF;
+    text-shadow: 2px 2px 0 #bcbcbc, 4px 4px 0 #9c9c9c;
+    color: #00008B;
+    background: #FFFFFF;
+    letter-spacing: 2px;
+}
+
+.logo_aplicativo, .logo_empresa{
+	font-family: 'Paytone One', sans-serif;
+	font-style: italic;
+	color: #FAFAD2;
+	font-size: 22px;
+}
+
+.titulo_painel{
+	font-family: 'Sriracha', cursive;
+	/*font-style: italic;*/
+    text-align: center;
+	text-transform: uppercase;
+	text-shadow: 4px 4px 4px #aaa;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    letter-spacing: 1px;
+}
+
+.subtitulo_painel{
+    font-family: 'Ribeye', cursive;
+    text-align: center;
+}
+
+.destaque{
+    font-family: 'Courgette', cursive;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.destaque2{
+    font-family: 'Courgette', cursive;
+    font-size: 22px;
+}
+
