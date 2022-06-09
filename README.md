@@ -1,12 +1,14 @@
 ## Projeto URL's Requests Management
 
+<<<<<<< HEAD
 ### Instalação de dependências
 
 ```bash
 composer install
 ```
 
-
+=======
+>>>>>>> de1efd895d98b0e18507b47b29be7adb416a0206
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
