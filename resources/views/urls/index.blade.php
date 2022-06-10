@@ -23,7 +23,7 @@
     </div>    
 
     <div>
-        <h4 style="font-weight:bold" class="text-center text-danger msg_user"></h4>
+        <p style="font-weight:bold; font-style:italic;" class="text-center text-danger msg_user"></p>
     </div>  
 
 
@@ -71,7 +71,7 @@
                             class="fas fa-book-reader" style="font-size:14px"></i></a>
 
 
-                    <a class="btn btn-dark m-1"
+                    <a class="btn btn-dark m-1 bt_update_one_request"
                         href="{{ route('update.one', ['id' => $url->id]) }}" title="Atualizar requisição"><i class="fa-solid fa-arrow-rotate-right"></i></a>
 
 
