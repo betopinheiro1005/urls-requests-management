@@ -17,19 +17,52 @@
         if($status_code == '200'){
             $message1 = 'SUCCESS';
             $message2 = "OK";
+        } else if($status_code == '201'){
+            $message1 = 'SUCCESS';
+            $message2 = "Created";
+        } else if($status_code == '202'){
+            $message1 = 'SUCCESS';
+            $message2 = "Accepted";
         } else if($status_code == '301'){
             $message1 = 'REDIRECTION';
             $message2 = "Moved Permanently";
+        } else if($status_code == '302'){
+            $message1 = 'REDIRECTION';
+            $message2 = "Found (Previously 'Moved Temporarily')";
         } else if($status_code == '400') {
             $message1 = "ERROR";
             $message2 = "Bad request";
-        } else if($status_code == '406') {
+        } else if($status_code == '401') {
             $message1 = "ERROR";
-            $message2 = "Not Acceptable";
+            $message2 = "Unauthorized";
+        } else if($status_code == '402') {
+            $message1 = "ERROR";
+            $message2 = "Payment Required";
+        } else if($status_code == '403') {
+            $message1 = "ERROR";
+            $message2 = "Forbidden";
         } else if($status_code == '404') {
             $message1 = "ERROR";
             $message2 = "Not Found";
-        }    
+        } else if($status_code == '405') {
+            $message1 = "ERROR";
+            $message2 = "Method Not Allowed";
+        } else if($status_code == '406') {
+            $message1 = "ERROR";
+            $message2 = "Not Acceptable: Response is HTML. It's not a valid JSON";
+        } else if($status_code == '408') {
+            $message1 = "ERROR";
+            $message2 = "Request Timeout";
+        } else if($status_code == '414') {
+            $message1 = "ERROR";
+            $message2 = "URI Too Long";
+        } else if($status_code == '500') {
+            $message1 = "SERVER ERROR";
+            $message2 = "Internal Server Error";
+        } else {
+            $message1 = "OTHERS";
+            $message2 = "Not listed";
+        }
         
         $consultation_date = $busca->consultation_date;
     @endphp

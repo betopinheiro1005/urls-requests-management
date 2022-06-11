@@ -87,8 +87,6 @@ class UrlController extends Controller
         
         $response = curl_exec($ch);
 
-        // dd($response);
-
         if(curl_error($ch)){
 
                 $info = [
@@ -97,6 +95,10 @@ class UrlController extends Controller
                 ];
 
         } else {
+
+            if($response === false){
+                dd("response: " . $response . " - Solicite ao seu serviço de hospedagem habilitar o SSH");
+            }
 
             $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
