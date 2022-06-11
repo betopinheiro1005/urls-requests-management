@@ -98,10 +98,14 @@ class UrlController extends Controller
 
         } else {
 
-            $decoded = json_decode($response, true);  // converte json em array
+            $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-            //testa se houve erro no parsing! Vai acusar erro de string mal-formada (JSON_ERROR_SYNTAX)
-            if (json_last_error() == 0 || is_array($decoded)) {
+            // dd($httpcode);
+
+            $decoded = json_decode($response, true);  // converte json em array
+            // dd($httpcode, $decoded);
+
+            if ($httpcode == "200" && is_array($decoded)) {
 
                 $info = [
                     "status_code" =>  '200',
@@ -110,42 +114,21 @@ class UrlController extends Controller
 
             
             } else {
-
-                $tipo = substr_count(strtolower($response),"html");
-                $tipo2 = substr_count(strtolower($response),"code : 301");
-                $tipo3 = substr_count(strtolower($response),"code: 301");
-                $tipo4 = substr_count(strtolower($response),"301 moved");
-                $tipo5 = substr_count(strtolower($response),"error 404");
-                $tipo6 = substr_count(strtolower($response),"not found");
-
-                // dd($tipo2);
     
-                if($tipo > 0){
-
-                    if($tipo2 > 0 || $tipo3 > 0 || $tipo4 > 0){
-
-                        $info = [
-                            "status_code" =>  '301',
-                            "response" => null
-                        ];
-
-
-                    } else if($tipo5 > 0 || $tipo6 > 0 || $decoded == null) {
-
-                        $info = [
-                            "status_code" =>  '404',
-                            "response" => null
-                        ];
-        
-                    }                         
-
-                } else {    
+                if($httpcode == "200" && $decoded == null){
 
                         $info = [
                             "status_code" =>  '406',
                             "response" => null
                         ];
-   
+
+                } else {
+
+                        $info = [
+                            "status_code" =>  $httpcode,
+                            "response" => null
+                        ];
+        
                 }
 
             }
