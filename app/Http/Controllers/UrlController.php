@@ -84,6 +84,7 @@ class UrlController extends Controller
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         
         $response = curl_exec($ch);
 
@@ -96,9 +97,9 @@ class UrlController extends Controller
 
         } else {
 
-            if($response === false){
-                dd("response: " . $response . " - Solicite ao seu serviço de hospedagem habilitar o SSH");
-            }
+            // if($response === false){
+            //     dd("response: " . $response . " - Solicite ao seu serviço de hospedagem habilitar o SSH");
+            // }
 
             $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
