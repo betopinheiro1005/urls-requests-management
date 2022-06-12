@@ -56,35 +56,56 @@
         </thead>
         <tbody>
             @foreach($users as $user)
-            <tr>
-                {{-- <td>{{$user->id}}</td> --}}
-                <td class="align-middle">{{$user->name}}</td>
-                <td class="align-middle">{{$user->email}}</td>
-                <td class="text-center align-middle" colspan="4">
-                    <a class="btn btn-success mt-1" title="Detalhes"
-                        href="{{ route('users.show', ['user' => $user->id]) }}"><i class="fas fa-user-check"></i></a>
+                <tr>
 
-                    @if (auth()->user()->email == "robertopinheiro7843@gmail.com" || auth()->user()->email == "administrador@gmail.com")
-                    <a class="btn btn-warning mt-1" title="Atualizar"
-                        href="{{ route('users.edit', ['user' => $user->id]) }}"><i class="fas fa-user-edit"></i></a>
+                    @if(auth()->user()->email == "administrador@gmail.com")
 
-                        @if($users->count()==1)
-                            <!-- <h4 class="text-center">Você não pode excluir esse usuário!</h4> -->
-                        @else
-                            <form style="display:inline;" action="{{ route('users.destroy', ['user' => $user->id]) }}"
-                                method="POST">
-                                @csrf
-                                @method('DELETE')
+                        @if($user->email != "robertopinheiro7843@gmail.com")
 
-                                <button type="submit" class="btn btn-danger mt-1" title="Excluir"
-                                onclick="return confirm('Tem certeza que deseja excluir este usuário?')"><i
-                                    class="fas fa-user-minus"></i></button>
-                            </form>
+                            {{-- <td>{{$user->id}}</td> --}}
+                            <td class="align-middle">{{$user->name}}</td>
+                            <td class="align-middle">{{$user->email}}</td>
+                            <td class="text-center align-middle" colspan="4">
+                                <a class="btn btn-success mt-1" title="Detalhes" href="{{ route('users.show', ['user' => $user->id]) }}"><i class="fas fa-user-check"></i></a>
+
+                                <a class="btn btn-warning mt-1" title="Atualizar" href="{{ route('users.edit', ['user' => $user->id]) }}"><i class="fas fa-user-edit"></i></a>
+                                <form style="display:inline;" action="{{ route('users.destroy', ['user' => $user->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-danger mt-1" title="Excluir"
+                                    onclick="return confirm('Tem certeza que deseja excluir este usuário?')"><i
+                                        class="fas fa-user-minus"></i></button>
+                                </form>
+                            </td>    
                         @endif
 
+                    @elseif(auth()->user()->email == "robertopinheiro7843@gmail.com")
+                        {{-- <td>{{$user->id}}</td> --}}
+                        <td class="align-middle">{{$user->name}}</td>
+                        <td class="align-middle">{{$user->email}}</td>
+                        <td class="text-center align-middle" colspan="4">
+                            <a class="btn btn-success mt-1" title="Detalhes" href="{{ route('users.show', ['user' => $user->id]) }}"><i class="fas fa-user-check"></i></a>
+
+                            @if($user->email != "robertopinheiro7843@gmail.com")
+                                <a class="btn btn-warning mt-1" title="Atualizar" href="{{ route('users.edit', ['user' => $user->id]) }}"><i class="fas fa-user-edit"></i></a>
+                                <form style="display:inline;" action="{{ route('users.destroy', ['user' => $user->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-danger mt-1" title="Excluir"
+                                    onclick="return confirm('Tem certeza que deseja excluir este usuário?')"><i
+                                        class="fas fa-user-minus"></i></button>
+                                </form>
+                            @else    
+                                <a class="btn btn-warning mt-1" title="Atualizar" href="{{ route('users.edit', ['user' => $user->id]) }}"><i class="fas fa-user-edit"></i></a>
+                            @endif
+                        </td>
+
                     @endif
-                </td>
-            </tr>
+
+                </tr>
+
             @endforeach
         </tbody>
     </table>
