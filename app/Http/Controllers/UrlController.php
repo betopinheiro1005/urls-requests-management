@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Database\Query\Expression;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\UrlRequest;
 use App\Url;
 use App\User;
@@ -65,7 +65,9 @@ class UrlController extends Controller
 
         $url -> update();
 
-        return redirect('/urls')->with('message', 'Descrição da URL alterada com sucesso!');
+        $this->update_request($id);
+
+        return redirect('/urls')->with('message', 'URL alterada com sucesso!');
     }
 
     public function destroy($id)
@@ -97,16 +99,8 @@ class UrlController extends Controller
 
         } else {
 
-            // if($response === false){
-            //     dd("response: " . $response . " - Solicite ao seu serviço de hospedagem habilitar o SSH");
-            // }
-
             $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-            // dd($httpcode);
-
             $decoded = json_decode($response, true);  // converte json em array
-            // dd($httpcode, $decoded);
 
             if ($httpcode == "200" && is_array($decoded)) {
 
@@ -114,7 +108,6 @@ class UrlController extends Controller
                     "status_code" =>  '200',
                     "response" => $response
                 ];
-
             
             } else {
     
@@ -143,5 +136,27 @@ class UrlController extends Controller
         return $info;
 
     }
+
+    public function truncate_urls(){
+        DB::table('urls')->truncate();
+        return redirect('/urls')->with('message', 'Todas as URL\'s foram excluídas com sucesso!');
+    }
+
+    public function update_request($id){
+        $consultation_date = date('Y-m-d H:i:s');
+
+        $url = Url::findOrFail($id);
+
+        $result = $this->check_response($url->url);
+        $url->status_code = $result['status_code'];
+        $url->response = $result['response'];
+        $url->consultation_date = $consultation_date;
+
+        $url->update();
+
+        return;        
+    }
+
+
 
 }

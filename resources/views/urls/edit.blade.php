@@ -37,7 +37,7 @@
             </div>
         @endif
 
-            <h3 class="text-center titulo_painel">Alteração da descrição da URL</h3>
+            <h3 class="text-center titulo_painel">Edição da URL</h3>
 
                 <br />
 

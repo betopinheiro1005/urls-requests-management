@@ -29,7 +29,7 @@ class UserController extends Controller
         $logged_user = auth()->user()->id;  // id do usuário logado
 
         // dd($logged_user);
-        return view('users.index', ['users' => $users, 'total_users' => $total_users, 'logged_user' => $logged_user]);
+        return view('users.index', ['users' => $users, 'all_users' => $all_users, 'total_users' => $total_users, 'logged_user' => $logged_user]);
     }
 
     public function create()
@@ -68,17 +68,22 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        // $levels = [0, 1, 2];
-        $user_email = $user->email;
-        $logged_user = auth()->user()->email;
+        
+        $levels = [0, 1, 2];
+        $user_level = $user->level;
+        $logged_user = auth()->user()->id;
         $users = User::all();
 
-        if (auth()->user()->email == "robertopinheiro7843@gmail.com" || auth()->user()->email == "administrador@gmail.com") {
-            return view('users.edit', ['users' => $users, 'user' => $user, 'logged_user' => $logged_user, 'user_email' => $user_email]);
+        if (auth()->user()->level == 1) {
+            return view('users.edit', ['users' => $users, 'user' => $user, 'levels' => $levels, 'user_level' => $user_level]);
+        } else if (auth()->user()->level == 2 && $user->id != 1) {
+            return view('users.edit', ['users' => $users, 'user' => $user, 'levels' => $levels, 'user_level' => $user_level]);
         }
+
 
         Session::flash('message2', 'Você não tem permissão para realizar essa operação!');
         return redirect()->route('users.index');
+
     }
 
     public function update(UserEditRequest $request, User $user)

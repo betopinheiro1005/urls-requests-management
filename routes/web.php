@@ -15,16 +15,20 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/urls/{id}', 'UrlController@destroy')->name('urls.destroy');
 });
 
-
-// Rotas protegidas (somente acessadas pelo administrador)
-
+// Rotas protegidas (somente acessadas pelo administrador geral)
 Route::group(['middleware' => ['auth', 'check.permissions1']], function () {
+    Route::get('/urls_truncate', 'UrlController@truncate_urls')->name('urls.truncate');
+});
+
+
+
+// Rotas protegidas (somente acessadas pelos administradores)
+Route::group(['middleware' => ['auth', 'check.permissions2']], function () {
     Route::get('/users/create', 'UserController@create')->name('users.create');
     Route::post('/users/store', 'UserController@store')->name('users.store');
     Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');
     Route::put('/users/{user}', 'UserController@update')->name('users.update');
     Route::delete('/users/{user}', 'UserController@destroy')->name('users.destroy');
-
     Route::get('/users', 'UserController@index')->name('users.index');
     Route::get('/users/{user}', 'UserController@show')->name('users.show');
 });

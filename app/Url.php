@@ -11,5 +11,4 @@ class Url extends Model
     protected $fillable = [
         "url", "response","description", "status_code", "consultation_date"
     ];
-
 }

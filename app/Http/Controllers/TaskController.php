@@ -11,8 +11,6 @@ class TaskController extends Controller
 
     public function check_response($url){
 
-        // dd($url);
-        
         // Verifica response
 
         $ch = curl_init();
@@ -31,16 +29,8 @@ class TaskController extends Controller
 
         } else {
 
-            // if($response === false){
-            //     dd("response: " . $response . " - Solicite ao seu serviço de hospedagem habilitar o SSH");
-            // }
-
             $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-            // dd($httpcode);
-
             $decoded = json_decode($response, true);  // converte json em array
-            // dd($httpcode, $decoded);
 
             if ($httpcode == "200" && is_array($decoded)) {
 
@@ -83,8 +73,6 @@ class TaskController extends Controller
 
         $url = Url::findOrFail($id);
 
-        // dd($url);
-
         $result = $this->check_response($url->url);
         $url->status_code = $result['status_code'];
         $url->response = $result['response'];
@@ -101,12 +89,13 @@ class TaskController extends Controller
 
         if($num_urls != 0){
 
+            $last_url = Url::all()->last();
+            $last_id = $last_url->id;
+    
             $consultation_date = date('Y-m-d H:i:s');
 
-            for($i=1; $i <= $num_urls; $i++){
-                
+            for($i=1; $i <= $last_id; $i++){                
                 if(!Url::find($i)){
-                    $i++;
                     continue;
                 } else {
 
@@ -127,7 +116,7 @@ class TaskController extends Controller
 
         } else {
 
-            return redirect('/urls')->with('message', 'Não há URL para atualizar!');        
+            return redirect('/urls')->with('message', 'Não há nenhuma URL para atualizar!');        
         }
     }
     

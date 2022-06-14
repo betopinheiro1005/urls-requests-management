@@ -57,7 +57,7 @@
                             <a class="nav-link" href="{{route('urls.index')}}">URL's</a>
                         </li>
 						
-                        @if((auth()->user()->email == "robertopinheiro7843@gmail.com") || (auth()->user()->email == "administrador@gmail.com"))
+                        @if((auth()->user()->level == 1) || (auth()->user()->level == 2))
 
                         <li class="nav-item menu_users">
                             <a class="nav-link" href="{{route('users.index')}}">Users</a>

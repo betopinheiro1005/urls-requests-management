@@ -6,12 +6,13 @@
 
 <div class="row mt-3 mb-3">
     <div class="col-md-2"></div>
-    <div class="col-md-8 ml-2 mr-2">
+    <div class="col-md-8">
 
         <form action="{{route('users.update', ['user' => $user->id])}}" method="POST" class="form-group">
 
             @csrf
             @method('PUT')
+
 
             @if(count($errors) > 0)
             <div class="alert alert-danger alert-dismissible ml-2 mr-2 mt-2" role="alert">
@@ -25,6 +26,9 @@
             </div>
             @endif
 
+            <h2 style="background-color:#F5F5DC; padding:10px; display:block; border:1px solid #ccc; clear: both;"
+                class="titulo_painel mt-2 mb-3">Atualização - usuário</h2>
+
             <div class="mt-3">
                 <a class="btn btn-dark btn-sm" href="javascript:window.history.go(-1)" title="Voltar"><i
                         class="fas fa-arrow-left"></i></a>
@@ -32,8 +36,6 @@
             </div>
 
             <br />
-
-            <h3 style="display:block; clear: both;" class="titulo_painel mt-2 mb-3">Atualização - usuário</h3>
 
             <form action="{{route('users.store')}}" method="POST" class="form-group">
 
@@ -50,13 +52,44 @@
                 <label for="password">Senha: </label>
                 <input type="password" name="password" class="form-control"
                     placeholder="Apenas letras e números (mínimo 6, máximo 20) - Não iniciar por número">
-                <small class="text-danger">Para não alterar a senha, não digite nada neste campo e no seguinte</small><br /><br />
+                <small class="text-danger">Para não alterar a senha, basta não digitar nada neste campo e no
+                    seguinte</small><br /><br />
 
                 <label for="password_confirm">Confirmar senha: </label>
                 <input type="password" name="password_confirm" class="form-control" placeholder="Confirme a senha">
 
                 <br />
 
+                <!-- @if($users->count()<=1)
+                    
+                @else
+                    <label for="level">Perfil:</label><br />
+                    <select name="level" class="form-control">
+                        @foreach($levels as $level)
+                            @if($level == 0)
+                                @if($user_level == 0)
+                                    <option value="0" selected>Visitante</option>
+                                @else
+                                    <option value="0">Visitante</option>
+                                @endif
+                            @elseif($level == 1)
+                                @if($user_level == 1)
+                                    <option value="1" selected>Administrador Geral</option>
+                                @else
+                                    <option value="1">Administrador Geral</option>
+                                @endif
+                            @elseif($level == 2)
+                                @if($user_level == 2)
+                                    <option value="2" selected>Administrador</option>
+                                @else
+                                    <option value="2">Administrador</option>
+                                @endif
+                            @endif
+                        @endforeach
+                    </select>
+                @endif -->
+                
+                <br />
 
                 <div class="float-right mb-3">
                     <button class="btn btn-primary" type="submit">Gravar</button>

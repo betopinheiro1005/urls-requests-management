@@ -50,16 +50,20 @@
             <small>A senha não deve conter caracteres especiais, não pode iniciar por números e deve ter entre 6 e 20
                 caracteres</small><br /><br />
 
-            <!-- <label for="level">Perfil:</label><br />
+            <label for="level">Perfil:</label><br />
             <select name="level" class="form-control">
-                @foreach($levels as $level)
-                @if($level == 2)
-                <option value="{{$level}}" selected>Visitante</option>
-                @elseif($level == 1)
-                <option value="{{$level}}">Administrador</option>
-                @endif
-                @endforeach
-            </select><br /> -->
+                  <option value=0 selected>Visitante</option>
+            </select><br />
+
+
+                <!-- @foreach($levels as $level)
+                    @if($level == 2)
+                        <option value="{{$level}}" selected>Visitante</option>
+                    @elseif($level == 1)
+                        <option value="{{$level}}">Administrador</option>
+                    @endif
+                @endforeach -->
+            <!-- </select><br /> -->
 
             <div class="float-right mb-3">
                 <button class="btn btn-primary" type="submit">Gravar</button>

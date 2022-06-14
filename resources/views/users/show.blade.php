@@ -32,6 +32,18 @@
 
         <p class="m-3"><strong>Email:</strong> {{$user->email}}</p>
 
+        @php
+            if($user->level == 0){
+                $perfil = "Visitante";
+            }else if($user->level == 1){
+                $perfil = "Administrador Geral";
+            }else if($user->level == 2){
+                $perfil = "Administrador";
+            }
+        @endphp
+
+        <p class="m-3"><strong>Perfil:</strong> {{$perfil}}</p>
+
             <div class="m-3">
                 <strong>Data de cadastro:</strong> {{ date('d/m/Y H:i', strtotime($user->created_at)) }}
             </div>
