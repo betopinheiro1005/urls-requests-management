@@ -24,9 +24,7 @@
         </div>
     </div>    
 
-    <div>
-        <p style="font-weight:bold; font-style:italic;" class="text-center text-danger msg_user"></p>
-    </div>  
+        <h3 class="text-center titulo_painel pb-2">URL's (Requests)</h3>
 
         @if(Session::has('message'))
             <div class="alert alert-success alert-dismissible mt-3 text-center" role="alert">
@@ -36,8 +34,9 @@
             </div>
         @endif
 
-        <h3 class="text-center titulo_painel">URL's (Requests)</h3><br />
-
+        <div>
+            <p style="font-weight:bold; font-style:italic;" class="text-center text-danger msg_user"></p>
+        </div>  
 
         @if($total_urls==0)
             <h4 class="text-center">Nenhuma URL cadastrada!</h4>
